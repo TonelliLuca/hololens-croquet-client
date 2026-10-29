@@ -16,15 +16,20 @@ Built for my bachelor's thesis.
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    subgraph HL["HoloLens 2 – this repo"]
-        M["Main<br/>(MonoBehaviour)"] --> V["CounterView"]
-        V --> VC["ViewClient<br/>(subscriptions)"]
-        VC --> PC["ProxyClient<br/>(TCP + JSON)"]
-    end
-    PC <-- "TCP :10000<br/>JSON lines" --> B["croquet-hololens-bridge<br/>(Node.js)"]
-    B <-- "Socket.IO" --> C(("Croquet session"))
+```
+ HoloLens 2 (this repo)
+┌──────────────────────────────────────────┐
+│ Main (MonoBehaviour)                     │
+│   └─► CounterView                        │
+│         └─► ViewClient (subscriptions)   │
+│               └─► ProxyClient (TCP+JSON) │
+└──────────────────────────────┬───────────┘
+                               │ TCP :10000, JSON lines
+                               ▼
+              croquet-hololens-bridge (Node.js)
+                               │ Socket.IO
+                               ▼
+                       Croquet session
 ```
 
 The code mirrors Croquet's own **Model / View** split and its **publish / subscribe**
