@@ -10,6 +10,10 @@ which forwards messages to and from the Croquet session.
 
 Built for my bachelor's thesis.
 
+> **Context:** this project dates from early 2023, before Croquet released its official
+> Unity integration (Croquet for Unity). At the time there was no supported way to run a
+> Croquet session from Unity, so this bridge-based approach was built from scratch.
+
 ## Architecture
 
 ```mermaid
